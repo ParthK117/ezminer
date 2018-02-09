@@ -1,0 +1,10 @@
+C:\Users\Parthu\Documents\Visual Studio 2017\Projects\EzMiner\EzMiner\bin\Release\EzMiner.exe
+C:\Users\Parthu\Documents\Visual Studio 2017\Projects\EzMiner\EzMiner\bin\Release\EzMiner.pdb
+C:\Users\Parthu\Documents\Visual Studio 2017\Projects\EzMiner\EzMiner\bin\Release\EzMiner.xml
+C:\Users\Parthu\Documents\Visual Studio 2017\Projects\EzMiner\EzMiner\obj\Release\EzMiner.main.resources
+C:\Users\Parthu\Documents\Visual Studio 2017\Projects\EzMiner\EzMiner\obj\Release\EzMiner.Resources.resources
+C:\Users\Parthu\Documents\Visual Studio 2017\Projects\EzMiner\EzMiner\obj\Release\EzMiner.vbproj.GenerateResource.Cache
+C:\Users\Parthu\Documents\Visual Studio 2017\Projects\EzMiner\EzMiner\obj\Release\EzMiner.vbproj.CoreCompileInputs.cache
+C:\Users\Parthu\Documents\Visual Studio 2017\Projects\EzMiner\EzMiner\obj\Release\EzMiner.exe
+C:\Users\Parthu\Documents\Visual Studio 2017\Projects\EzMiner\EzMiner\obj\Release\EzMiner.xml
+C:\Users\Parthu\Documents\Visual Studio 2017\Projects\EzMiner\EzMiner\obj\Release\EzMiner.pdb
