@@ -48,10 +48,11 @@ Public Class main
     'THE 'ARRAY' STARTS AT 1 SUE ME
     Dim coindex As String = "coin2"
     Dim pool_uptime_state As Boolean = False
+    Dim background As String = ""
+    Dim theme As Color = Color.DodgerBlue
 
 
-
-    Dim version As String = "1.0.0"
+    Dim version As String = "1.0.5"
     Private Sub green_Click(sender As Object, e As EventArgs) Handles green.Click
         If Me.WindowState = FormWindowState.Maximized Then
             Me.WindowState = FormWindowState.Normal
@@ -61,11 +62,19 @@ Public Class main
     End Sub
     Private Sub ETN_earned_Nanopool()
         Using client = New WebClient()
-            Dim nanopool_etn_earned = client.DownloadString("https://api.nanopool.org/v1/etn/balance/" & textbox_wallet_address.Text)
-            nanopool_etn_earned = nanopool_etn_earned.Replace("{""status"":true,""data"":", "")
-            nanopool_etn_earned = nanopool_etn_earned.Replace("}", "")
-            lbl_coin_Earned.Text = coin.ToUpper & " Earned: " & nanopool_etn_earned
+            Try
+                Dim nanopool_etn_earned = client.DownloadString("https://api.nanopool.org/v1/etn/balance/" & textbox_wallet_address.Text)
+                nanopool_etn_earned = nanopool_etn_earned.Replace("{""status"":true,""data"":", "")
+                nanopool_etn_earned = nanopool_etn_earned.Replace("}", "")
+                lbl_coin_Earned.Text = coin.ToUpper & " Earned: " & nanopool_etn_earned
+                client.Dispose()
+            Catch ex As Exception
+                client.Dispose()
+                MessageBox.Show("Nanopool API is down, cannot check ETN")
+
+            End Try
         End Using
+
     End Sub
 
     Private Sub ETN_earned_Spacepools()
@@ -134,9 +143,14 @@ Public Class main
         droplist_pool.Items.Clear()
 
         Using listclient = New WebClient()
-            listclient.DownloadFile("https://parthk.co.uk/" & coin & "-poolbase/pool.list", ".\hotassets\" & coin & "_pool.list")
-            Dim pool_list_file() As String = IO.File.ReadAllLines(".\hotassets\" & coin & "_pool.list")
-            listclient.Dispose()
+            Try
+                listclient.DownloadFile("https://parthk.co.uk/" & coin & "-poolbase/pool.list", ".\hotassets\" & coin & "_pool.list")
+                Dim pool_list_file() As String = IO.File.ReadAllLines(".\hotassets\" & coin & "_pool.list")
+                listclient.Dispose()
+            Catch ex As Exception
+                listclient.Dispose()
+                MessageBox.Show("Pool List cannot be found.")
+            End Try
         End Using
 
         For Each pool_url_loop As String In File.ReadLines(".\hotassets\" & coin & "_pool.list")
@@ -180,7 +194,6 @@ Public Class main
         widget_3_price.Text = ticker_results(2) & " $"
         widget_4_title.Text = ticker_list(3) & " Price (CMC)"
         widget_4_price.Text = ticker_results(3) & " $"
-
 
         Dim support_api As String = "0"
         If droplist_pool.Text = "" Then
@@ -380,6 +393,7 @@ Public Class main
         cpum_state = True
     End Sub
     Private Sub main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        droplist_cpu_backend.SelectedIndex = 0
         Dim comp_width As Integer = Screen.PrimaryScreen.Bounds.Width
         Dim comp_height As Integer = Screen.PrimaryScreen.Bounds.Height
         If comp_width < "1600" And comp_height < "900" Then
@@ -408,29 +422,34 @@ Public Class main
 
 
         If System.IO.File.Exists("auto.mcf") = True Then
-            Dim config_contents_load As String() = File.ReadAllLines("auto.mcf")
-            textbox_wallet_address.Text = config_contents_load(0)
-            droplist_pool.SelectedItem = config_contents_load(1)
-            textbox_custom_pool.Text = config_contents_load(2)
-            textbox_port.Text = config_contents_load(3)
-            textbox_threadcount.Text = config_contents_load(4)
-            droplist_cpuorgpu.SelectedIndex = config_contents_load(5)
-            droplist_vendor.SelectedIndex = config_contents_load(6)
-            droplist_donation.SelectedIndex = config_contents_load(7)
-            coin = config_contents_load(8)
-            checkbox_load_config_on_startup.Checked = config_contents_load(9)
-            checkbox_automatic_updates.Checked = config_contents_load(10)
-            droplist_background_colour.SelectedItem = config_contents_load(11)
-            If coin = "coin1" Then
-                coin_2_Click(sender, e)
-            End If
-            If coin = "coin2" Then
-                coin_2_Click(sender, e)
-            End If
-            If coin = "coin3" Then
-                coin_2_Click(sender, e)
-            End If
-
+            Try
+                Dim config_contents_load As String() = File.ReadAllLines("auto.mcf")
+                textbox_wallet_address.Text = config_contents_load(0)
+                droplist_pool.SelectedItem = config_contents_load(1)
+                textbox_custom_pool.Text = config_contents_load(2)
+                textbox_port.Text = config_contents_load(3)
+                textbox_threadcount.Text = config_contents_load(4)
+                droplist_cpuorgpu.SelectedIndex = config_contents_load(5)
+                droplist_vendor.SelectedIndex = config_contents_load(6)
+                droplist_donation.SelectedIndex = config_contents_load(7)
+                coin = config_contents_load(8)
+                checkbox_load_config_on_startup.Checked = config_contents_load(9)
+                checkbox_automatic_updates.Checked = config_contents_load(10)
+                droplist_background_colour.SelectedItem = config_contents_load(11)
+                droplist_cpu_backend.SelectedIndex = config_contents_load(12)
+                'mainpanel.BackgroundImage = System.Drawing.Image.FromFile(config_contents_load(13))
+                If coin = "coin1" Then
+                    coin_2_Click(sender, e)
+                End If
+                If coin = "coin2" Then
+                    coin_2_Click(sender, e)
+                End If
+                If coin = "coin3" Then
+                    coin_2_Click(sender, e)
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Older configurations not supported, please uncheck default configurations")
+            End Try
         End If
         Dim dateselect As String = f_1_richtextbox_changelog.Lines(0)
         f_1_richtextbox_changelog.Select(f_1_richtextbox_changelog.GetFirstCharIndexFromLine(0), dateselect.Length)
@@ -525,12 +544,18 @@ Public Class main
                 lbl_pool_address.Text = "Pool Address: " & pool_info(0)
                 lbl_pool_status.Text = "Pool Status: Checking"
             End If
-            Call xmr_stak()
+            If droplist_cpu_backend.SelectedItem = droplist_cpu_backend.Items(0) Then
+                Call xmr_stak()
+            ElseIf droplist_cpu_backend.SelectedItem = droplist_cpu_backend.Items(1) Then
+                droplist_cpuorgpu.SelectedItem = droplist_cpuorgpu.Items(0)
+                MessageBox.Show("cpuminer-multi selected, mining on CPU only.")
+                Call cpuminer_multi()
+            End If
             button_start_miner.Enabled = False
-            button_stop_miner.Enabled = True
-            lbl_status.Text = "Status: Mining"
-        Else
-            lbl_status.Text = "Status: Stopped, Invalid wallet address"
+                button_stop_miner.Enabled = True
+                lbl_status.Text = "Status: Mining"
+            Else
+                lbl_status.Text = "Status: Stopped, Invalid wallet address"
         End If
     End Sub
 
@@ -659,6 +684,8 @@ Public Class main
             checkbox_load_config_on_startup.Checked = config_contents_load(9)
             checkbox_automatic_updates.Checked = config_contents_load(10)
             droplist_background_colour.SelectedItem = config_contents_load(11)
+            droplist_cpu_backend.SelectedIndex = config_contents_load(12)
+            'mainpanel.BackgroundImage = System.Drawing.Image.FromFile(config_contents_load(12))
             If coin = "coin1" Then
                 coin_2_Click(sender, e)
             End If
@@ -673,7 +700,7 @@ Public Class main
 
     Private Sub checkbox_load_config_on_startup_CheckedChanged(sender As Object, e As EventArgs) Handles checkbox_load_config_on_startup.CheckedChanged
         If checkbox_load_config_on_startup.Checked = True Then
-            Dim config_contents_save As String = textbox_wallet_address.Text & vbNewLine & droplist_pool.SelectedItem & vbNewLine & textbox_custom_pool.Text & vbNewLine & textbox_port.Text & vbNewLine & textbox_threadcount.Text & vbNewLine & droplist_cpuorgpu.SelectedIndex & vbNewLine & droplist_vendor.SelectedIndex & vbNewLine & droplist_donation.SelectedIndex & vbNewLine & coindex & vbNewLine & checkbox_load_config_on_startup.CheckState & vbNewLine & checkbox_automatic_updates.CheckState & vbNewLine & droplist_background_colour.SelectedItem
+            Dim config_contents_save As String = textbox_wallet_address.Text & vbNewLine & droplist_pool.SelectedItem & vbNewLine & textbox_custom_pool.Text & vbNewLine & textbox_port.Text & vbNewLine & textbox_threadcount.Text & vbNewLine & droplist_cpuorgpu.SelectedIndex & vbNewLine & droplist_vendor.SelectedIndex & vbNewLine & droplist_donation.SelectedIndex & vbNewLine & coindex & vbNewLine & checkbox_load_config_on_startup.CheckState & vbNewLine & checkbox_automatic_updates.CheckState & vbNewLine & droplist_background_colour.SelectedItem & vbNewLine & droplist_cpu_backend.SelectedIndex
             My.Computer.FileSystem.WriteAllText("auto.mcf", config_contents_save, True)
         ElseIf checkbox_load_config_on_startup.Checked = False AndAlso System.IO.File.Exists("auto.mcf") = True Then
             System.IO.File.Delete("config.txt")
@@ -682,19 +709,29 @@ Public Class main
     Private Sub ez_update()
         If checkbox_automatic_updates.Checked = True Then
             Using client = New WebClient()
-                Dim versionnumber As String = client.DownloadString("https://parthk.co.uk/version.version")
-                If Not versionnumber = version Then
-                    Using listclient = New WebClient()
-                        listclient.DownloadFile("https://parthk.co.uk/ez-updater.exe", ".\updates\ez_updater.exe")
-                        listclient.Dispose()
-                    End Using
-                    Process.Start("ez_updater.exe")
-                    Call kill_cpuminer_multi()
-                    Call kill_pool_uptime()
-                    Call kill_xmr_stak()
-                    Me.Close()
-                End If
-
+                Try
+                    Dim versionnumber As String = client.DownloadString("https://parthk.co.uk/version.version")
+                    If Not versionnumber = version Then
+                        Using listclient = New WebClient()
+                            Try
+                                listclient.DownloadFile("https://parthk.co.uk/ez-updater.exe", "ez_updater.exe")
+                                listclient.Dispose()
+                            Catch ex As Exception
+                                listclient.Dispose()
+                                MessageBox.Show("Can't find update")
+                            End Try
+                        End Using
+                        Process.Start("ez_updater.exe")
+                        Call kill_cpuminer_multi()
+                        Call kill_pool_uptime()
+                        Call kill_xmr_stak()
+                        Me.Close()
+                    End If
+                    client.Dispose()
+                Catch ex As Exception
+                    client.Dispose()
+                    MessageBox.Show("Versioning file missing or update not found")
+                End Try
             End Using
         End If
     End Sub
@@ -705,19 +742,70 @@ Public Class main
         Call kill_xmr_stak()
         Me.Close()
     End Sub
+    Private Sub main_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        Call kill_cpuminer_multi()
+        Call kill_pool_uptime()
+        Call kill_xmr_stak()
+    End Sub
 
     Private Sub droplist_background_colour_SelectedIndexChanged(sender As Object, e As EventArgs) Handles droplist_background_colour.SelectedIndexChanged
         If droplist_background_colour.SelectedItem = "Blue" Then
             Me.BackColor = Color.Navy
+            theme = Color.DodgerBlue
+            Call theme_change()
         ElseIf droplist_background_colour.SelectedItem = "Red" Then
             Me.BackColor = Color.Crimson
+            theme = Color.Crimson
+            Call theme_change()
         ElseIf droplist_background_colour.SelectedItem = "Yellow" Then
             Me.BackColor = Color.Gold
+            theme = Color.Gold
+            Call theme_change()
         ElseIf droplist_background_colour.SelectedItem = "Green" Then
             Me.BackColor = Color.ForestGreen
+            theme = Color.ForestGreen
+            Call theme_change()
         End If
 
 
+    End Sub
+    Public Sub theme_change()
+        button_clear_background.ForeColor = theme
+        button_load_background.ForeColor = theme
+        button_start_miner.ForeColor = theme
+        If theme = Color.Crimson Then
+            button_clear_wallet.ForeColor = Color.DodgerBlue
+            button_stop_miner.ForeColor = Color.DodgerBlue
+        End If
+        button_load_config.ForeColor = theme
+        button_save_config.ForeColor = theme
+        button_googleforms_report.ForeColor = theme
+        f_2_groupbox_miner_information.ForeColor = theme
+        f_3_groupbox_update_info.ForeColor = theme
+        f_2_groupbox_pool_information.ForeColor = theme
+        f_3_groupbox_configuration.ForeColor = theme
+        f_3_groupbox_gui.ForeColor = theme
+        f_3_label_background.ForeColor = theme
+        f_3_lbl_colour.ForeColor = theme
+        left_border.BackColor = theme
+        right_border.BackColor = theme
+        bottom_border.BackColor = theme
+        f_3_lbl_cpu_backend.ForeColor = theme
+        f_3_miner_backend.ForeColor = theme
+        If Not theme = Color.DodgerBlue Then
+            widget_1.BackColor = theme
+            widget_2.BackColor = theme
+            widget_3.BackColor = theme
+            widget_4.BackColor = theme
+        Else
+            widget_1.BackColor = Color.Navy
+            widget_2.BackColor = Color.Navy
+            widget_3.BackColor = Color.Navy
+            widget_4.BackColor = Color.Navy
+        End If
+        Dim dateselect As String = f_1_richtextbox_changelog.Lines(0)
+        f_1_richtextbox_changelog.Select(f_1_richtextbox_changelog.GetFirstCharIndexFromLine(0), dateselect.Length)
+        f_1_richtextbox_changelog.SelectionColor = theme
     End Sub
 
     Private Sub yellow_Click(sender As Object, e As EventArgs) Handles yellow.Click
@@ -732,4 +820,5 @@ Public Class main
         Process.Start("https://docs.google.com/forms/d/e/1FAIpQLScP9LeYOPkAIj2jjbGmW_kV7ELVYIrgXP81O3ERgrmI2EDunw/viewform?usp=sf_link")
 
     End Sub
+
 End Class
