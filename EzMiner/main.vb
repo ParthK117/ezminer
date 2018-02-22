@@ -21,7 +21,7 @@
 'jams jams bonk her magistrates seacrate cervix
 'To lower the imports so its more readable when compiling
 
-
+'this is so rainbow rhythms
 
 Imports System.IO
 Imports System.Net
@@ -41,6 +41,8 @@ Public Class main
     Dim cpum_state As Boolean = False
     Dim xmr_stak_proc_state As Boolean = False
     Dim xmr_stak_proc As New Process()
+    Dim ccminer_allium_proc_state As Boolean = False
+    Dim ccminer_allium_proc As New Process()
     Dim cpu0 As Single = "0"
     Dim cpu1 As Single = "0"
     Dim cpu2 As Single = "0"
@@ -50,9 +52,14 @@ Public Class main
     Dim pool_uptime_state As Boolean = False
     Dim background As String = ""
     Dim theme As Color = Color.DodgerBlue
-
-
-    Dim version As String = "1.0.5"
+    Dim w1 As Boolean = False
+    Dim w2 As Boolean = False
+    Dim w3 As Boolean = False
+    Dim w4 As Boolean = False
+    Dim w5 As Boolean = False
+    Dim w6 As Boolean = False
+    Dim allium_client As WebClient = New WebClient
+    Dim version As String = "1.1.0"
     Private Sub green_Click(sender As Object, e As EventArgs) Handles green.Click
         If Me.WindowState = FormWindowState.Maximized Then
             Me.WindowState = FormWindowState.Normal
@@ -76,7 +83,16 @@ Public Class main
         End Using
 
     End Sub
-
+    Private Sub grab_motd()
+        Using client = New WebClient()
+            Try
+                Dim motd As String = client.DownloadString("https://parthk.co.uk/motd.txt")
+                f_1_richtextbox_changelog.Text = motd
+            Catch ex As Exception
+                MessageBox.Show("Cannot find MOTD")
+            End Try
+        End Using
+    End Sub
     Private Sub ETN_earned_Spacepools()
         'foranotherday
     End Sub
@@ -152,12 +168,14 @@ Public Class main
                 MessageBox.Show("Pool List cannot be found.")
             End Try
         End Using
-
-        For Each pool_url_loop As String In File.ReadLines(".\hotassets\" & coin & "_pool.list")
-            Dim pool_array As String() = Split(pool_url_loop, ",")
-            droplist_pool.Items.Add(pool_array(0))
-        Next
-
+        Try
+            For Each pool_url_loop As String In File.ReadLines(".\hotassets\" & coin & "_pool.list")
+                Dim pool_array As String() = Split(pool_url_loop, ",")
+                droplist_pool.Items.Add(pool_array(0))
+            Next
+        Catch ex As Exception
+            MessageBox.Show("garlicoin pool list not found.")
+        End Try
         droplist_pool.Items.Add("Custom pool")
         droplist_pool.SelectedItem = droplist_pool.Items(0)
     End Sub
@@ -181,20 +199,90 @@ Public Class main
             droplist_pool.SelectedItem = droplist_pool.Items(0)
         End If
     End Sub
+    Private Sub server_ticker()
+        'DOWNLOAD POOL LIST AND ASSOCIATED FILES
+
+        Using listclient = New WebClient()
+            Try
+                listclient.DownloadFile("https://parthk.co.uk/price.list", ".\hotassets\price.list")
+                Dim price_list() As String = IO.File.ReadAllLines(".\hotassets\price.list")
+                listclient.Dispose()
+            Catch ex As Exception
+                listclient.Dispose()
+                MessageBox.Show("Price List cannot be found.")
+            End Try
+        End Using
+
+        For Each price_list_loop As String In File.ReadLines(".\hotassets\price.list")
+            Dim price_array As String() = Split(price_list_loop, ",")
+            For Each coin_name As String In richtextbox_coins_fetched.Lines
+                If price_array(0) = coin_name Then
+                    If w1 = False Then
+                        widget_1_title.Text = price_array(0) & " Price (CMC)"
+                        widget_1_price.Text = price_array(1) & " $"
+                        w1 = True
+                        Exit For
+                    ElseIf w2 = False Then
+                        widget_2_title.Text = price_array(0) & " Price (CMC)"
+                        widget_2_price.Text = price_array(1) & " $"
+                        w2 = True
+                        Exit For
+                    ElseIf w3 = False Then
+                        widget_3_title.Text = price_array(0) & " Price (CMC)"
+                        widget_3_price.Text = price_array(1) & " $"
+                        w3 = True
+                        Exit For
+                    ElseIf w4 = False Then
+                        widget_4_title.Text = price_array(0) & " Price (CMC)"
+                        widget_4_price.Text = price_array(1) & " $"
+                        w4 = True
+                        Exit For
+                    ElseIf w5 = False Then
+                        widget_5_title.Text = price_array(0) & " Price (CMC)"
+                        widget_5_price.Text = price_array(1) & " $"
+                        w5 = True
+                        Exit For
+                    ElseIf w6 = False Then
+                        widget_6_title.Text = price_array(0) & " Price (CMC)"
+                        widget_6_price.Text = price_array(1) & " $"
+                        w6 = True
+                        Exit For
+                    End If
+                End If
+            Next
+            If w1 = True And w2 = True And w3 = True And w4 = True And w5 = True And w6 = True Then
+                Exit For
+            End If
+        Next
+        '     If price_array(0) = droplist_pool.SelectedItem() Then
+        '    pool_info = price_array
+        '   Exit For
+        '  End If
+
+        'N 'ext
+    End Sub
     Private Sub ez_ticker()
+        richtextbox_coins_fetched.SaveFile("ticker_list.dat", RichTextBoxStreamType.PlainText)
         System.Diagnostics.Process.Start("ez_ticker.exe")
         ticker_results = File.ReadAllLines("ticker_results.dat")
         ticker_list = File.ReadAllLines("ticker_list.dat")
         'update widgets without dynamically renaming controls
-        widget_1_title.Text = ticker_list(0) & " Price (CMC)"
-        widget_1_price.Text = ticker_results(0) & " $"
-        widget_2_title.Text = ticker_list(1) & " Price (CMC)"
-        widget_2_price.Text = ticker_results(1) & " $"
-        widget_3_title.Text = ticker_list(2) & " Price (CMC)"
-        widget_3_price.Text = ticker_results(2) & " $"
-        widget_4_title.Text = ticker_list(3) & " Price (CMC)"
-        widget_4_price.Text = ticker_results(3) & " $"
-
+        Try
+            widget_1_title.Text = ticker_list(0) & " Price (CMC)"
+            widget_1_price.Text = ticker_results(0) & " $"
+            widget_2_title.Text = ticker_list(1) & " Price (CMC)"
+            widget_2_price.Text = ticker_results(1) & " $"
+            widget_3_title.Text = ticker_list(2) & " Price (CMC)"
+            widget_3_price.Text = ticker_results(2) & " $"
+            widget_4_title.Text = ticker_list(3) & " Price (CMC)"
+            widget_4_price.Text = ticker_results(3) & " $"
+            widget_5_title.Text = ticker_list(4) & " Price (CMC)"
+            widget_5_price.Text = ticker_results(4) & " $"
+            widget_6_title.Text = ticker_list(5) & " Price (CMC)"
+            widget_6_price.Text = ticker_results(5) & " $"
+        Catch ex As Exception
+            MessageBox.Show("Not enough values to populate all widgets :/")
+        End Try
         Dim support_api As String = "0"
         If droplist_pool.Text = "" Then
         Else
@@ -394,6 +482,7 @@ Public Class main
     End Sub
     Private Sub main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         droplist_cpu_backend.SelectedIndex = 0
+        droplist_widget_fetching.SelectedIndex = 0
         Dim comp_width As Integer = Screen.PrimaryScreen.Bounds.Width
         Dim comp_height As Integer = Screen.PrimaryScreen.Bounds.Height
         If comp_width < "1600" And comp_height < "900" Then
@@ -414,7 +503,6 @@ Public Class main
         For Each delINFOfiles In Directory.GetFiles(INFOfiles, "*.*", SearchOption.TopDirectoryOnly)
             File.Delete(delINFOfiles)
         Next
-        Call ez_ticker()
         Call load_pool_list()
         droplist_cpuorgpu.SelectedItem = droplist_cpuorgpu.Items(0)
         button_stop_miner.Enabled = False
@@ -437,23 +525,33 @@ Public Class main
                 checkbox_automatic_updates.Checked = config_contents_load(10)
                 droplist_background_colour.SelectedItem = config_contents_load(11)
                 droplist_cpu_backend.SelectedIndex = config_contents_load(12)
+                droplist_widget_fetching.SelectedIndex = config_contents_load(13)
                 'mainpanel.BackgroundImage = System.Drawing.Image.FromFile(config_contents_load(13))
                 If coin = "coin1" Then
-                    coin_2_Click(sender, e)
+                    coin_1_Click(sender, e)
                 End If
                 If coin = "coin2" Then
                     coin_2_Click(sender, e)
                 End If
                 If coin = "coin3" Then
-                    coin_2_Click(sender, e)
+                    coin_3_Click(sender, e)
+                End If
+                If coin = "coin4" Then
+                    coin_4_Click(sender, e)
                 End If
             Catch ex As Exception
                 MessageBox.Show("Older configurations not supported, please uncheck default configurations")
             End Try
         End If
+        If droplist_widget_fetching.SelectedIndex = 0 Then
+            Call server_ticker()
+        ElseIf droplist_widget_fetching.SelectedIndex = 1 Then
+            Call ez_ticker()
+        End If
         Dim dateselect As String = f_1_richtextbox_changelog.Lines(0)
         f_1_richtextbox_changelog.Select(f_1_richtextbox_changelog.GetFirstCharIndexFromLine(0), dateselect.Length)
         f_1_richtextbox_changelog.SelectionColor = Color.DodgerBlue
+        Call grab_motd()
     End Sub
 
     Private Sub main_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseDown
@@ -472,7 +570,19 @@ Public Class main
     End Sub
 
     Private Sub ez_caller_Tick(sender As Object, e As EventArgs) Handles ez_caller.Tick
-        Call ez_ticker()
+        w1 = False
+        w2 = False
+        w3 = False
+        w4 = False
+        w5 = False
+        w6 = False
+
+        If droplist_widget_fetching.SelectedIndex = 0 Then
+            Call server_ticker()
+        ElseIf droplist_widget_fetching.SelectedIndex = 1 Then
+            Call ez_ticker()
+        End If
+
     End Sub
 
     Private Sub tab_1_label_Click(sender As Object, e As EventArgs) Handles tab_1_label.Click
@@ -544,52 +654,71 @@ Public Class main
                 lbl_pool_address.Text = "Pool Address: " & pool_info(0)
                 lbl_pool_status.Text = "Pool Status: Checking"
             End If
-            If droplist_cpu_backend.SelectedItem = droplist_cpu_backend.Items(0) Then
+            If droplist_cpu_backend.SelectedItem = "xmr-stak" Then
                 Call xmr_stak()
-            ElseIf droplist_cpu_backend.SelectedItem = droplist_cpu_backend.Items(1) Then
+            ElseIf droplist_cpu_backend.SelectedItem = "cpuminer-multi" Then
                 droplist_cpuorgpu.SelectedItem = droplist_cpuorgpu.Items(0)
                 MessageBox.Show("cpuminer-multi selected, mining on CPU only.")
+                mining_output.Text = mining_output.Text & vbNewLine & "GUI: cpuminer-multi backend selected" & vbNewLine & "GUI: CPU mining supported only, forcing CPUOptions"
                 Call cpuminer_multi()
+            ElseIf droplist_cpu_backend.SelectedItem = "ccminer-allium" Then
+                droplist_cpuorgpu.SelectedItem = droplist_cpuorgpu.Items(0)
+                Call ccminer_allium()
             End If
             button_start_miner.Enabled = False
-                button_stop_miner.Enabled = True
-                lbl_status.Text = "Status: Mining"
-            Else
-                lbl_status.Text = "Status: Stopped, Invalid wallet address"
+            button_stop_miner.Enabled = True
+            lbl_status.Text = "Status: Mining"
+        Else
+            lbl_status.Text = "Status: Stopped, Invalid wallet address"
         End If
+    End Sub
+    Public Sub equip_cryptonight_droplist()
+        droplist_cpu_backend.Items.Clear()
+        droplist_cpu_backend.Items.Add("xmr-stak")
+        droplist_cpu_backend.Items.Add("cpuminer-multi")
+        droplist_cpu_backend.SelectedIndex = 0
+        droplist_vendor.Enabled = True
+        droplist_cpuorgpu.Enabled = True
+        mining_output.Text = mining_output.Text & vbNewLine & "GUI: Cryptonight/Cryptolight algorithm selected for mining"
     End Sub
 
     Private Sub coin_1_Click(sender As Object, e As EventArgs) Handles coin_1.Click
         algo = "cryptonight"
-        coin_1.BackgroundImage = Image.FromFile(".\graphics\xmrc.png")
-        coin_2.BackgroundImage = Image.FromFile(".\graphics\etnuc.png")
-        coin_3.BackgroundImage = Image.FromFile(".\graphics\aeonuc.png")
+        panel_coin_1_checked.Visible = True
+        panel_coin_2_checked.Visible = False
+        panel_coin_3_checked.Visible = False
+        panel_coin_4_checked.Visible = False
         coin = "xmr"
         fullcoin = "monero"
         Call offline_load_pool_list()
         coindex = "coin1"
+        Call equip_cryptonight_droplist()
     End Sub
 
     Private Sub coin_2_Click(sender As Object, e As EventArgs) Handles coin_2.Click
         algo = "cryptonight"
-        coin_1.BackgroundImage = Image.FromFile(".\graphics\xmruc.png")
-        coin_2.BackgroundImage = Image.FromFile(".\graphics\etnc.png")
-        coin_3.BackgroundImage = Image.FromFile(".\graphics\aeonuc.png")
+        panel_coin_1_checked.Visible = False
+        panel_coin_2_checked.Visible = True
+        panel_coin_3_checked.Visible = False
+        panel_coin_4_checked.Visible = False
         coin = "etn"
         fullcoin = "monero"
         Call offline_load_pool_list()
         coindex = "coin2"
+        Call equip_cryptonight_droplist()
     End Sub
 
     Private Sub coin_3_Click(sender As Object, e As EventArgs) Handles coin_3.Click
         algo = "cryptolight"
-        coin_1.BackgroundImage = Image.FromFile(".\graphics\xmruc.png")
-        coin_2.BackgroundImage = Image.FromFile(".\graphics\etnuc.png")
-        coin_3.BackgroundImage = Image.FromFile(".\graphics\aeonc.png")
+        panel_coin_1_checked.Visible = False
+        panel_coin_2_checked.Visible = False
+        panel_coin_3_checked.Visible = True
+        panel_coin_4_checked.Visible = False
         coin = "aeon"
         fullcoin = "aeon"
         Call offline_load_pool_list()
         coindex = "coin3"
+        Call equip_cryptonight_droplist()
     End Sub
 
     Private Sub droplist_pool_SelectedIndexChanged(sender As Object, e As EventArgs) Handles droplist_pool.SelectedIndexChanged
@@ -619,14 +748,15 @@ Public Class main
                 textbox_port.Text = pool_info(1)
             End If
 
-            If textbox_wallet_address.Text = "" Then
-            Else
-                droplist_pool.Enabled = False
-                lbl_pool_status.Text = "Pool Status: Checking"
-                Call check_pool_uptime()
-
+            If Not textbox_wallet_address.Text = "" Then
+                If algo = "cryptonight" Or algo = "cryptolight" Then
+                    droplist_pool.Enabled = False
+                    lbl_pool_status.Text = "Pool Status: Checking"
+                    Call check_pool_uptime()
+                End If
             End If
             Dim support_api As String = "0"
+
             If droplist_pool.Text = "" Then
             Else
                 support_api = droplist_pool.SelectedItem()
@@ -642,6 +772,7 @@ Public Class main
     Private Sub button_stop_miner_Click(sender As Object, e As EventArgs) Handles button_stop_miner.Click
         Call kill_cpuminer_multi()
         Call kill_xmr_stak()
+        Call kill_ccminer_allium()
         button_start_miner.Enabled = True
         button_stop_miner.Enabled = False
     End Sub
@@ -662,7 +793,7 @@ Public Class main
         dialog_save_config.Filter = "Miner Configuration Files (*.mcf*)|*.mcf"
         If dialog_save_config.ShowDialog = Windows.Forms.DialogResult.OK _
         Then
-            Dim config_contents_save As String = textbox_wallet_address.Text & vbNewLine & droplist_pool.SelectedItem & vbNewLine & textbox_custom_pool.Text & vbNewLine & textbox_port.Text & vbNewLine & textbox_threadcount.Text & vbNewLine & droplist_cpuorgpu.SelectedIndex & vbNewLine & droplist_vendor.SelectedIndex & vbNewLine & droplist_donation.SelectedIndex & vbNewLine & coindex & vbNewLine & checkbox_load_config_on_startup.CheckState & vbNewLine & checkbox_automatic_updates.CheckState & vbNewLine & droplist_background_colour.SelectedItem
+            Dim config_contents_save As String = textbox_wallet_address.Text & vbNewLine & droplist_pool.SelectedItem & vbNewLine & textbox_custom_pool.Text & vbNewLine & textbox_port.Text & vbNewLine & textbox_threadcount.Text & vbNewLine & droplist_cpuorgpu.SelectedIndex & vbNewLine & droplist_vendor.SelectedIndex & vbNewLine & droplist_donation.SelectedIndex & vbNewLine & coindex & vbNewLine & checkbox_load_config_on_startup.CheckState & vbNewLine & checkbox_automatic_updates.CheckState & vbNewLine & droplist_background_colour.SelectedItem & vbNewLine & droplist_cpu_backend.SelectedIndex & vbNewLine & droplist_widget_fetching.SelectedIndex
             My.Computer.FileSystem.WriteAllText(dialog_save_config.FileName, config_contents_save, True)
         End If
     End Sub
@@ -684,26 +815,30 @@ Public Class main
             checkbox_load_config_on_startup.Checked = config_contents_load(9)
             checkbox_automatic_updates.Checked = config_contents_load(10)
             droplist_background_colour.SelectedItem = config_contents_load(11)
-            droplist_cpu_backend.SelectedIndex = config_contents_load(12)
             'mainpanel.BackgroundImage = System.Drawing.Image.FromFile(config_contents_load(12))
             If coin = "coin1" Then
-                coin_2_Click(sender, e)
+                coin_1_Click(sender, e)
             End If
             If coin = "coin2" Then
                 coin_2_Click(sender, e)
             End If
             If coin = "coin3" Then
-                coin_2_Click(sender, e)
+                coin_3_Click(sender, e)
             End If
+            If coin = "coin4" Then
+                coin_4_Click(sender, e)
+            End If
+            droplist_cpu_backend.SelectedIndex = config_contents_load(12)
+            droplist_widget_fetching.SelectedIndex = config_contents_load(13)
         End If
     End Sub
 
     Private Sub checkbox_load_config_on_startup_CheckedChanged(sender As Object, e As EventArgs) Handles checkbox_load_config_on_startup.CheckedChanged
         If checkbox_load_config_on_startup.Checked = True Then
-            Dim config_contents_save As String = textbox_wallet_address.Text & vbNewLine & droplist_pool.SelectedItem & vbNewLine & textbox_custom_pool.Text & vbNewLine & textbox_port.Text & vbNewLine & textbox_threadcount.Text & vbNewLine & droplist_cpuorgpu.SelectedIndex & vbNewLine & droplist_vendor.SelectedIndex & vbNewLine & droplist_donation.SelectedIndex & vbNewLine & coindex & vbNewLine & checkbox_load_config_on_startup.CheckState & vbNewLine & checkbox_automatic_updates.CheckState & vbNewLine & droplist_background_colour.SelectedItem & vbNewLine & droplist_cpu_backend.SelectedIndex
+            Dim config_contents_save As String = textbox_wallet_address.Text & vbNewLine & droplist_pool.SelectedItem & vbNewLine & textbox_custom_pool.Text & vbNewLine & textbox_port.Text & vbNewLine & textbox_threadcount.Text & vbNewLine & droplist_cpuorgpu.SelectedIndex & vbNewLine & droplist_vendor.SelectedIndex & vbNewLine & droplist_donation.SelectedIndex & vbNewLine & coindex & vbNewLine & checkbox_load_config_on_startup.CheckState & vbNewLine & checkbox_automatic_updates.CheckState & vbNewLine & droplist_background_colour.SelectedItem & vbNewLine & droplist_cpu_backend.SelectedIndex & vbNewLine & droplist_widget_fetching.SelectedIndex
             My.Computer.FileSystem.WriteAllText("auto.mcf", config_contents_save, True)
         ElseIf checkbox_load_config_on_startup.Checked = False AndAlso System.IO.File.Exists("auto.mcf") = True Then
-            System.IO.File.Delete("config.txt")
+            System.IO.File.Delete("auto.mcf")
         End If
     End Sub
     Private Sub ez_update()
@@ -725,6 +860,7 @@ Public Class main
                         Call kill_cpuminer_multi()
                         Call kill_pool_uptime()
                         Call kill_xmr_stak()
+                        Call kill_ccminer_allium()
                         Me.Close()
                     End If
                     client.Dispose()
@@ -740,12 +876,14 @@ Public Class main
         Call kill_cpuminer_multi()
         Call kill_pool_uptime()
         Call kill_xmr_stak()
+        Call kill_ccminer_allium()
         Me.Close()
     End Sub
     Private Sub main_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         Call kill_cpuminer_multi()
         Call kill_pool_uptime()
         Call kill_xmr_stak()
+        Call kill_ccminer_allium()
     End Sub
 
     Private Sub droplist_background_colour_SelectedIndexChanged(sender As Object, e As EventArgs) Handles droplist_background_colour.SelectedIndexChanged
@@ -776,6 +914,9 @@ Public Class main
         If theme = Color.Crimson Then
             button_clear_wallet.ForeColor = Color.DodgerBlue
             button_stop_miner.ForeColor = Color.DodgerBlue
+        Else
+            button_clear_wallet.ForeColor = Color.Red
+            button_stop_miner.ForeColor = Color.Red
         End If
         button_load_config.ForeColor = theme
         button_save_config.ForeColor = theme
@@ -792,6 +933,13 @@ Public Class main
         bottom_border.BackColor = theme
         f_3_lbl_cpu_backend.ForeColor = theme
         f_3_miner_backend.ForeColor = theme
+        f_3_lbl_price_fetching.ForeColor = theme
+        f_3_lbl_widget_coins.ForeColor = theme
+        f_3_groupbox_widget_settings.ForeColor = theme
+        panel_coin_1_checked.BackColor = theme
+        panel_coin_2_checked.BackColor = theme
+        panel_coin_3_checked.BackColor = theme
+        panel_coin_4_checked.BackColor = theme
         If Not theme = Color.DodgerBlue Then
             widget_1.BackColor = theme
             widget_2.BackColor = theme
@@ -820,5 +968,135 @@ Public Class main
         Process.Start("https://docs.google.com/forms/d/e/1FAIpQLScP9LeYOPkAIj2jjbGmW_kV7ELVYIrgXP81O3ERgrmI2EDunw/viewform?usp=sf_link")
 
     End Sub
+    Public Sub equip_allium_droplist()
+        droplist_cpu_backend.Items.Clear()
+        droplist_cpu_backend.Items.Add("ccminer-allium")
+        droplist_cpu_backend.SelectedIndex = 0
+        droplist_cpuorgpu.SelectedIndex = 0
+        droplist_vendor.SelectedIndex = 0
+        droplist_vendor.Enabled = False
+        droplist_cpuorgpu.Enabled = False
+        mining_output.Text = mining_output.Text & vbNewLine & "GUI: Allium algorithm selected for mining" & vbNewLine & "GUI: NVIDIA mining supported only, forcing NVOptions"
+    End Sub
+    Private Sub coin_4_Click(sender As Object, e As EventArgs) Handles coin_4.Click
+        algo = "allium"
+        panel_coin_1_checked.Visible = False
+        panel_coin_2_checked.Visible = False
+        panel_coin_3_checked.Visible = False
+        panel_coin_4_checked.Visible = True
+        coin = "grlc"
+        fullcoin = "garlicoin"
+        Call offline_load_pool_list()
+        coindex = "coin4"
+        Call equip_allium_droplist()
+        Call dl_ccminer_allium()
+    End Sub
 
+
+
+
+
+
+
+
+
+
+
+    Delegate Sub ccminer_allium_boxDelg(ccminer_allium_text As String)
+    Public ccminer_allium_delegate As ccminer_allium_boxDelg = New ccminer_allium_boxDelg(AddressOf ccminer_allium_output)
+    Public Sub ccminer_allium_output(ccminer_allium_text As String)
+        If ccminer_allium_text.Contains("GPU #") And ccminer_allium_text.Contains("H/s") Then
+            Dim ccminer_text_split As String() = Split(ccminer_allium_text, " ")
+            lbl_hashrate.Text = "Hashrate: " & ccminer_text_split(6) & " H/s"
+            tab_2_label.Text = "Mine - " & ccminer_text_split(6) & " H/s"
+
+        ElseIf ccminer_allium_text.Contains("authentication failed") Then
+
+            Call kill_ccminer_allium()
+            lbl_pool_status.Text = "Pool Status: Pool Online, Invalid wallet address"
+            lbl_status.Text = "Status: Stopped, Invalid wallet address"
+            button_start_miner.Enabled = True
+            button_stop_miner.Enabled = False
+        ElseIf ccminer_allium_text.Contains("not resolve host") Then
+
+            Call kill_ccminer_allium()
+            lbl_pool_status.Text = "Pool Status: Pool down/Invalid pool address"
+            lbl_status.Text = "Status: Stopped"
+            button_start_miner.Enabled = True
+            button_stop_miner.Enabled = False
+        End If
+
+        mining_output.Text += ccminer_allium_text & Environment.NewLine
+        mining_output.SelectionStart = mining_output.Text.Length
+        mining_output.ScrollToCaret()
+        mining_output.Text = mining_output.Text.Replace("[0m", "")
+    End Sub
+    Public Sub ccminer_allium_proc_OutputDataReceived(ByVal sender As Object, ByVal e As DataReceivedEventArgs)
+        If Me.InvokeRequired = True Then
+            Me.Invoke(ccminer_allium_delegate, e.Data)
+        Else
+            ccminer_allium_output(e.Data)
+        End If
+    End Sub
+
+    Public Sub kill_ccminer_allium()
+        If ccminer_allium_proc_state = True Then
+            ccminer_allium_proc.Kill()
+            RemoveHandler ccminer_allium_proc.ErrorDataReceived, AddressOf ccminer_allium_proc_OutputDataReceived
+            RemoveHandler ccminer_allium_proc.OutputDataReceived, AddressOf ccminer_allium_proc_OutputDataReceived
+            ccminer_allium_proc.CancelErrorRead()
+            ccminer_allium_proc.CancelOutputRead()
+            ccminer_allium_proc_state = False
+            lbl_status.Text = "Status: Stopped"
+        End If
+    End Sub
+    Private Sub ccminer_allium()
+        ccminer_allium_proc.StartInfo.FileName = ".\backend\ccminer-allium"
+        ccminer_allium_proc.StartInfo.Arguments = ("--algo=" & algo & " -o stratum+tcp://" & pool_info(0) & ":" & textbox_port.Text & " -u " & textbox_wallet_address.Text & " --max-temp=85" & "pause")
+        MessageBox.Show(ccminer_allium_proc.StartInfo.Arguments)
+        ccminer_allium_proc.StartInfo.WorkingDirectory = ".\backend\"
+        ccminer_allium_proc.StartInfo.RedirectStandardError = True
+        ccminer_allium_proc.StartInfo.RedirectStandardOutput = True
+        ccminer_allium_proc.EnableRaisingEvents = True
+        ccminer_allium_proc.StartInfo.UseShellExecute = False
+        ccminer_allium_proc.StartInfo.CreateNoWindow = True
+        Application.DoEvents()
+        AddHandler ccminer_allium_proc.ErrorDataReceived, AddressOf ccminer_allium_proc_OutputDataReceived
+        AddHandler ccminer_allium_proc.OutputDataReceived, AddressOf ccminer_allium_proc_OutputDataReceived
+        ccminer_allium_proc.Start()
+        ccminer_allium_proc.BeginErrorReadLine()
+        ccminer_allium_proc.BeginOutputReadLine()
+        ccminer_allium_proc_state = True
+    End Sub
+
+    Private Sub dl_ccminer_allium()
+        If Not System.IO.File.Exists(".\backend\ccminer-allium.exe") = True Then
+            AddHandler allium_client.DownloadProgressChanged, AddressOf client_ProgressChanged
+            AddHandler allium_client.DownloadFileCompleted, AddressOf client_DownloadCompleted
+            allium_client.DownloadFileAsync(New Uri("https://github.com/lenis0012/ccminer/releases/download/2.3.0-allium/ccminer-x64.exe"), ".\backend\ccminer-allium.exe")
+            button_start_miner.Enabled = False
+            mining_output.Text = mining_output.Text & vbNewLine & "GUI: ccminer-allium backend not found, downloading from Github"
+        End If
+    End Sub
+
+    Private Sub client_ProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs)
+        Dim bytesIn As Double = Double.Parse(e.BytesReceived.ToString())
+        Dim totalBytes As Double = Double.Parse(e.TotalBytesToReceive.ToString())
+        Dim percentage As Double = bytesIn / totalBytes * 100
+    End Sub
+
+    Private Sub client_DownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
+        mining_output.Text = mining_output.Text & vbNewLine & "GUI: ccminer-allium successfully downloaded from Github, Allium mining is now available!"
+        button_start_miner.Enabled = True
+        RemoveHandler allium_client.DownloadProgressChanged, AddressOf client_ProgressChanged
+        RemoveHandler allium_client.DownloadFileCompleted, AddressOf client_DownloadCompleted
+        allium_client.Dispose()
+    End Sub
 End Class
+
+'Photoshop skills are beyond impressive
+'except this isn't ps
+'wait what's my point
+'i forgot lmfao
+'you wouldn't download a car
+'this software is licensed under the D.I.P.S.H.I.T license, where if you try and charge for this FOSS software you will automatically become a genuine verified dipshit. Don't be a dipshit.
