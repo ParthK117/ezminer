@@ -29,6 +29,28 @@ Partial Class main
         Me.top_border = New System.Windows.Forms.Panel()
         Me.right_border = New System.Windows.Forms.Panel()
         Me.left_border = New System.Windows.Forms.Panel()
+        Me.f_3 = New System.Windows.Forms.Panel()
+        Me.f_3_groupbox_widget_settings = New System.Windows.Forms.GroupBox()
+        Me.f_3_lbl_fetch_description = New System.Windows.Forms.Label()
+        Me.richtextbox_coins_fetched = New System.Windows.Forms.RichTextBox()
+        Me.f_3_lbl_widget_coins = New System.Windows.Forms.Label()
+        Me.droplist_widget_fetching = New System.Windows.Forms.ComboBox()
+        Me.f_3_lbl_price_fetching = New System.Windows.Forms.Label()
+        Me.f_3_miner_backend = New System.Windows.Forms.GroupBox()
+        Me.droplist_cpu_backend = New System.Windows.Forms.ComboBox()
+        Me.f_3_lbl_cpu_backend = New System.Windows.Forms.Label()
+        Me.f_3_groupbox_gui = New System.Windows.Forms.GroupBox()
+        Me.button_load_background = New System.Windows.Forms.Button()
+        Me.button_clear_background = New System.Windows.Forms.Button()
+        Me.f_3_label_background = New System.Windows.Forms.Label()
+        Me.f_3_lbl_colour = New System.Windows.Forms.Label()
+        Me.droplist_background_colour = New System.Windows.Forms.ComboBox()
+        Me.f_3_groupbox_update_info = New System.Windows.Forms.GroupBox()
+        Me.checkbox_automatic_updates = New System.Windows.Forms.CheckBox()
+        Me.f_3_groupbox_configuration = New System.Windows.Forms.GroupBox()
+        Me.button_save_config = New System.Windows.Forms.Button()
+        Me.checkbox_load_config_on_startup = New System.Windows.Forms.CheckBox()
+        Me.button_load_config = New System.Windows.Forms.Button()
         Me.f_2 = New System.Windows.Forms.Panel()
         Me.panel_coin_4_checked = New System.Windows.Forms.Panel()
         Me.panel_coin_3_checked = New System.Windows.Forms.Panel()
@@ -72,6 +94,14 @@ Partial Class main
         Me.mining_output = New System.Windows.Forms.RichTextBox()
         Me.droplist_pool = New System.Windows.Forms.ComboBox()
         Me.f_1 = New System.Windows.Forms.Panel()
+        Me.widget_6 = New System.Windows.Forms.Panel()
+        Me.widget_6_title = New System.Windows.Forms.Label()
+        Me.widget_6_inner = New System.Windows.Forms.Panel()
+        Me.widget_6_price = New System.Windows.Forms.Label()
+        Me.widget_5 = New System.Windows.Forms.Panel()
+        Me.widget_5_title = New System.Windows.Forms.Label()
+        Me.widget_5_inner = New System.Windows.Forms.Panel()
+        Me.widget_5_price = New System.Windows.Forms.Label()
         Me.f_1_label_sources = New System.Windows.Forms.Label()
         Me.f_1_richtextbox_changelog = New System.Windows.Forms.RichTextBox()
         Me.f_1_label_changelog = New System.Windows.Forms.Label()
@@ -95,28 +125,6 @@ Partial Class main
         Me.widget_1_price = New System.Windows.Forms.Label()
         Me.lbl_help_text = New System.Windows.Forms.Label()
         Me.lbl_welcome = New System.Windows.Forms.Label()
-        Me.f_3 = New System.Windows.Forms.Panel()
-        Me.f_3_groupbox_widget_settings = New System.Windows.Forms.GroupBox()
-        Me.f_3_lbl_fetch_description = New System.Windows.Forms.Label()
-        Me.richtextbox_coins_fetched = New System.Windows.Forms.RichTextBox()
-        Me.f_3_lbl_widget_coins = New System.Windows.Forms.Label()
-        Me.droplist_widget_fetching = New System.Windows.Forms.ComboBox()
-        Me.f_3_lbl_price_fetching = New System.Windows.Forms.Label()
-        Me.f_3_miner_backend = New System.Windows.Forms.GroupBox()
-        Me.droplist_cpu_backend = New System.Windows.Forms.ComboBox()
-        Me.f_3_lbl_cpu_backend = New System.Windows.Forms.Label()
-        Me.f_3_groupbox_gui = New System.Windows.Forms.GroupBox()
-        Me.button_load_background = New System.Windows.Forms.Button()
-        Me.button_clear_background = New System.Windows.Forms.Button()
-        Me.f_3_label_background = New System.Windows.Forms.Label()
-        Me.f_3_lbl_colour = New System.Windows.Forms.Label()
-        Me.droplist_background_colour = New System.Windows.Forms.ComboBox()
-        Me.f_3_groupbox_update_info = New System.Windows.Forms.GroupBox()
-        Me.checkbox_automatic_updates = New System.Windows.Forms.CheckBox()
-        Me.f_3_groupbox_configuration = New System.Windows.Forms.GroupBox()
-        Me.button_save_config = New System.Windows.Forms.Button()
-        Me.checkbox_load_config_on_startup = New System.Windows.Forms.CheckBox()
-        Me.button_load_config = New System.Windows.Forms.Button()
         Me.green = New System.Windows.Forms.PictureBox()
         Me.yellow = New System.Windows.Forms.PictureBox()
         Me.red = New System.Windows.Forms.PictureBox()
@@ -135,15 +143,13 @@ Partial Class main
         Me.tab_4_label = New System.Windows.Forms.Label()
         Me.dialog_save_config = New System.Windows.Forms.SaveFileDialog()
         Me.dialog_config_open = New System.Windows.Forms.OpenFileDialog()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.widget_5_title = New System.Windows.Forms.Label()
-        Me.widget_5_inner = New System.Windows.Forms.Panel()
-        Me.widget_5_price = New System.Windows.Forms.Label()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.widget_6_title = New System.Windows.Forms.Label()
-        Me.widget_6_inner = New System.Windows.Forms.Panel()
-        Me.widget_6_price = New System.Windows.Forms.Label()
         Me.mainpanel.SuspendLayout()
+        Me.f_3.SuspendLayout()
+        Me.f_3_groupbox_widget_settings.SuspendLayout()
+        Me.f_3_miner_backend.SuspendLayout()
+        Me.f_3_groupbox_gui.SuspendLayout()
+        Me.f_3_groupbox_update_info.SuspendLayout()
+        Me.f_3_groupbox_configuration.SuspendLayout()
         Me.f_2.SuspendLayout()
         CType(Me.coin_4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.f_2_groupbox_pool_information.SuspendLayout()
@@ -152,6 +158,10 @@ Partial Class main
         CType(Me.coin_2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.coin_1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.f_1.SuspendLayout()
+        Me.widget_6.SuspendLayout()
+        Me.widget_6_inner.SuspendLayout()
+        Me.widget_5.SuspendLayout()
+        Me.widget_5_inner.SuspendLayout()
         CType(Me.picture_snap_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picture_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.widget_4.SuspendLayout()
@@ -162,12 +172,6 @@ Partial Class main
         Me.widget_2_inner.SuspendLayout()
         Me.widget_1.SuspendLayout()
         Me.widget_1_inner.SuspendLayout()
-        Me.f_3.SuspendLayout()
-        Me.f_3_groupbox_widget_settings.SuspendLayout()
-        Me.f_3_miner_backend.SuspendLayout()
-        Me.f_3_groupbox_gui.SuspendLayout()
-        Me.f_3_groupbox_update_info.SuspendLayout()
-        Me.f_3_groupbox_configuration.SuspendLayout()
         CType(Me.green, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.yellow, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.red, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -179,10 +183,6 @@ Partial Class main
         CType(Me.tab_3_close, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tab_4.SuspendLayout()
         CType(Me.tab_4_close, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
-        Me.widget_5_inner.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        Me.widget_6_inner.SuspendLayout()
         Me.SuspendLayout()
         '
         'mainpanel
@@ -195,9 +195,9 @@ Partial Class main
         Me.mainpanel.Controls.Add(Me.top_border)
         Me.mainpanel.Controls.Add(Me.right_border)
         Me.mainpanel.Controls.Add(Me.left_border)
+        Me.mainpanel.Controls.Add(Me.f_1)
         Me.mainpanel.Controls.Add(Me.f_3)
         Me.mainpanel.Controls.Add(Me.f_2)
-        Me.mainpanel.Controls.Add(Me.f_1)
         Me.mainpanel.Location = New System.Drawing.Point(0, 39)
         Me.mainpanel.Margin = New System.Windows.Forms.Padding(2)
         Me.mainpanel.Name = "mainpanel"
@@ -238,6 +238,277 @@ Partial Class main
         Me.left_border.Name = "left_border"
         Me.left_border.Size = New System.Drawing.Size(1, 1080)
         Me.left_border.TabIndex = 0
+        '
+        'f_3
+        '
+        Me.f_3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.f_3.Controls.Add(Me.f_3_groupbox_widget_settings)
+        Me.f_3.Controls.Add(Me.f_3_miner_backend)
+        Me.f_3.Controls.Add(Me.f_3_groupbox_gui)
+        Me.f_3.Controls.Add(Me.f_3_groupbox_update_info)
+        Me.f_3.Controls.Add(Me.f_3_groupbox_configuration)
+        Me.f_3.Location = New System.Drawing.Point(3, 3)
+        Me.f_3.Name = "f_3"
+        Me.f_3.Size = New System.Drawing.Size(1594, 854)
+        Me.f_3.TabIndex = 7
+        '
+        'f_3_groupbox_widget_settings
+        '
+        Me.f_3_groupbox_widget_settings.Controls.Add(Me.f_3_lbl_fetch_description)
+        Me.f_3_groupbox_widget_settings.Controls.Add(Me.richtextbox_coins_fetched)
+        Me.f_3_groupbox_widget_settings.Controls.Add(Me.f_3_lbl_widget_coins)
+        Me.f_3_groupbox_widget_settings.Controls.Add(Me.droplist_widget_fetching)
+        Me.f_3_groupbox_widget_settings.Controls.Add(Me.f_3_lbl_price_fetching)
+        Me.f_3_groupbox_widget_settings.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.f_3_groupbox_widget_settings.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.f_3_groupbox_widget_settings.Location = New System.Drawing.Point(5, 534)
+        Me.f_3_groupbox_widget_settings.Name = "f_3_groupbox_widget_settings"
+        Me.f_3_groupbox_widget_settings.Size = New System.Drawing.Size(826, 312)
+        Me.f_3_groupbox_widget_settings.TabIndex = 66
+        Me.f_3_groupbox_widget_settings.TabStop = False
+        Me.f_3_groupbox_widget_settings.Text = "Widget Settings:"
+        '
+        'f_3_lbl_fetch_description
+        '
+        Me.f_3_lbl_fetch_description.AutoSize = True
+        Me.f_3_lbl_fetch_description.ForeColor = System.Drawing.Color.Black
+        Me.f_3_lbl_fetch_description.Location = New System.Drawing.Point(379, 71)
+        Me.f_3_lbl_fetch_description.Name = "f_3_lbl_fetch_description"
+        Me.f_3_lbl_fetch_description.Size = New System.Drawing.Size(410, 120)
+        Me.f_3_lbl_fetch_description.TabIndex = 69
+        Me.f_3_lbl_fetch_description.Text = "Description: " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "What coins to display the prices of in the " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "widgets (max 6). Does" &
+    "n't matter what order" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "they are in, sorted alphabetically."
+        '
+        'richtextbox_coins_fetched
+        '
+        Me.richtextbox_coins_fetched.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.richtextbox_coins_fetched.Location = New System.Drawing.Point(161, 71)
+        Me.richtextbox_coins_fetched.Name = "richtextbox_coins_fetched"
+        Me.richtextbox_coins_fetched.Size = New System.Drawing.Size(195, 230)
+        Me.richtextbox_coins_fetched.TabIndex = 68
+        Me.richtextbox_coins_fetched.Text = "electroneum" & Global.Microsoft.VisualBasic.ChrW(10) & "bitcoin" & Global.Microsoft.VisualBasic.ChrW(10) & "monero" & Global.Microsoft.VisualBasic.ChrW(10) & "garlicoin" & Global.Microsoft.VisualBasic.ChrW(10) & "litecoin" & Global.Microsoft.VisualBasic.ChrW(10) & "ethereum"
+        '
+        'f_3_lbl_widget_coins
+        '
+        Me.f_3_lbl_widget_coins.AutoSize = True
+        Me.f_3_lbl_widget_coins.Location = New System.Drawing.Point(11, 68)
+        Me.f_3_lbl_widget_coins.Name = "f_3_lbl_widget_coins"
+        Me.f_3_lbl_widget_coins.Size = New System.Drawing.Size(144, 30)
+        Me.f_3_lbl_widget_coins.TabIndex = 67
+        Me.f_3_lbl_widget_coins.Text = "Coins fetched:"
+        '
+        'droplist_widget_fetching
+        '
+        Me.droplist_widget_fetching.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.droplist_widget_fetching.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.droplist_widget_fetching.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.droplist_widget_fetching.FormattingEnabled = True
+        Me.droplist_widget_fetching.Items.AddRange(New Object() {"Server-side", "Client-side"})
+        Me.droplist_widget_fetching.Location = New System.Drawing.Point(161, 28)
+        Me.droplist_widget_fetching.Margin = New System.Windows.Forms.Padding(2)
+        Me.droplist_widget_fetching.Name = "droplist_widget_fetching"
+        Me.droplist_widget_fetching.Size = New System.Drawing.Size(193, 38)
+        Me.droplist_widget_fetching.TabIndex = 65
+        '
+        'f_3_lbl_price_fetching
+        '
+        Me.f_3_lbl_price_fetching.AutoSize = True
+        Me.f_3_lbl_price_fetching.Location = New System.Drawing.Point(11, 31)
+        Me.f_3_lbl_price_fetching.Name = "f_3_lbl_price_fetching"
+        Me.f_3_lbl_price_fetching.Size = New System.Drawing.Size(144, 30)
+        Me.f_3_lbl_price_fetching.TabIndex = 0
+        Me.f_3_lbl_price_fetching.Text = "Price fetching:"
+        '
+        'f_3_miner_backend
+        '
+        Me.f_3_miner_backend.Controls.Add(Me.droplist_cpu_backend)
+        Me.f_3_miner_backend.Controls.Add(Me.f_3_lbl_cpu_backend)
+        Me.f_3_miner_backend.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.f_3_miner_backend.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.f_3_miner_backend.Location = New System.Drawing.Point(5, 9)
+        Me.f_3_miner_backend.Name = "f_3_miner_backend"
+        Me.f_3_miner_backend.Size = New System.Drawing.Size(826, 128)
+        Me.f_3_miner_backend.TabIndex = 60
+        Me.f_3_miner_backend.TabStop = False
+        Me.f_3_miner_backend.Text = "Miner Backend:"
+        '
+        'droplist_cpu_backend
+        '
+        Me.droplist_cpu_backend.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.droplist_cpu_backend.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.droplist_cpu_backend.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.droplist_cpu_backend.FormattingEnabled = True
+        Me.droplist_cpu_backend.Items.AddRange(New Object() {"xmr-stak", "cpuminer-multi"})
+        Me.droplist_cpu_backend.Location = New System.Drawing.Point(16, 63)
+        Me.droplist_cpu_backend.Margin = New System.Windows.Forms.Padding(2)
+        Me.droplist_cpu_backend.Name = "droplist_cpu_backend"
+        Me.droplist_cpu_backend.Size = New System.Drawing.Size(193, 38)
+        Me.droplist_cpu_backend.TabIndex = 65
+        '
+        'f_3_lbl_cpu_backend
+        '
+        Me.f_3_lbl_cpu_backend.AutoSize = True
+        Me.f_3_lbl_cpu_backend.Location = New System.Drawing.Point(11, 31)
+        Me.f_3_lbl_cpu_backend.Name = "f_3_lbl_cpu_backend"
+        Me.f_3_lbl_cpu_backend.Size = New System.Drawing.Size(96, 30)
+        Me.f_3_lbl_cpu_backend.TabIndex = 0
+        Me.f_3_lbl_cpu_backend.Text = "Backend:"
+        '
+        'f_3_groupbox_gui
+        '
+        Me.f_3_groupbox_gui.Controls.Add(Me.button_load_background)
+        Me.f_3_groupbox_gui.Controls.Add(Me.button_clear_background)
+        Me.f_3_groupbox_gui.Controls.Add(Me.f_3_label_background)
+        Me.f_3_groupbox_gui.Controls.Add(Me.f_3_lbl_colour)
+        Me.f_3_groupbox_gui.Controls.Add(Me.droplist_background_colour)
+        Me.f_3_groupbox_gui.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.f_3_groupbox_gui.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.f_3_groupbox_gui.Location = New System.Drawing.Point(5, 377)
+        Me.f_3_groupbox_gui.Name = "f_3_groupbox_gui"
+        Me.f_3_groupbox_gui.Size = New System.Drawing.Size(826, 151)
+        Me.f_3_groupbox_gui.TabIndex = 61
+        Me.f_3_groupbox_gui.TabStop = False
+        Me.f_3_groupbox_gui.Text = "GUI Preferences"
+        '
+        'button_load_background
+        '
+        Me.button_load_background.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.button_load_background.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.button_load_background.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.button_load_background.Location = New System.Drawing.Point(220, 81)
+        Me.button_load_background.Margin = New System.Windows.Forms.Padding(2)
+        Me.button_load_background.Name = "button_load_background"
+        Me.button_load_background.Size = New System.Drawing.Size(273, 39)
+        Me.button_load_background.TabIndex = 45
+        Me.button_load_background.Text = "Load Background"
+        Me.button_load_background.UseVisualStyleBackColor = True
+        Me.button_load_background.Visible = False
+        '
+        'button_clear_background
+        '
+        Me.button_clear_background.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.button_clear_background.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.button_clear_background.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.button_clear_background.Location = New System.Drawing.Point(497, 81)
+        Me.button_clear_background.Margin = New System.Windows.Forms.Padding(2)
+        Me.button_clear_background.Name = "button_clear_background"
+        Me.button_clear_background.Size = New System.Drawing.Size(273, 39)
+        Me.button_clear_background.TabIndex = 46
+        Me.button_clear_background.Text = "Clear Background"
+        Me.button_clear_background.UseVisualStyleBackColor = True
+        Me.button_clear_background.Visible = False
+        '
+        'f_3_label_background
+        '
+        Me.f_3_label_background.AutoSize = True
+        Me.f_3_label_background.Location = New System.Drawing.Point(11, 85)
+        Me.f_3_label_background.Name = "f_3_label_background"
+        Me.f_3_label_background.Size = New System.Drawing.Size(205, 30)
+        Me.f_3_label_background.TabIndex = 64
+        Me.f_3_label_background.Text = "Custom Background:"
+        Me.f_3_label_background.Visible = False
+        '
+        'f_3_lbl_colour
+        '
+        Me.f_3_lbl_colour.AutoSize = True
+        Me.f_3_lbl_colour.Location = New System.Drawing.Point(11, 40)
+        Me.f_3_lbl_colour.Name = "f_3_lbl_colour"
+        Me.f_3_lbl_colour.Size = New System.Drawing.Size(149, 30)
+        Me.f_3_lbl_colour.TabIndex = 63
+        Me.f_3_lbl_colour.Text = "Theme Colour:"
+        '
+        'droplist_background_colour
+        '
+        Me.droplist_background_colour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.droplist_background_colour.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.droplist_background_colour.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.droplist_background_colour.FormattingEnabled = True
+        Me.droplist_background_colour.Items.AddRange(New Object() {"Blue", "Green", "Yellow", "Red"})
+        Me.droplist_background_colour.Location = New System.Drawing.Point(163, 38)
+        Me.droplist_background_colour.Margin = New System.Windows.Forms.Padding(2)
+        Me.droplist_background_colour.Name = "droplist_background_colour"
+        Me.droplist_background_colour.Size = New System.Drawing.Size(104, 38)
+        Me.droplist_background_colour.TabIndex = 62
+        '
+        'f_3_groupbox_update_info
+        '
+        Me.f_3_groupbox_update_info.Controls.Add(Me.checkbox_automatic_updates)
+        Me.f_3_groupbox_update_info.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.f_3_groupbox_update_info.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.f_3_groupbox_update_info.Location = New System.Drawing.Point(5, 277)
+        Me.f_3_groupbox_update_info.Name = "f_3_groupbox_update_info"
+        Me.f_3_groupbox_update_info.Size = New System.Drawing.Size(826, 94)
+        Me.f_3_groupbox_update_info.TabIndex = 60
+        Me.f_3_groupbox_update_info.TabStop = False
+        Me.f_3_groupbox_update_info.Text = "Updates"
+        '
+        'checkbox_automatic_updates
+        '
+        Me.checkbox_automatic_updates.AutoSize = True
+        Me.checkbox_automatic_updates.Checked = True
+        Me.checkbox_automatic_updates.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.checkbox_automatic_updates.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.checkbox_automatic_updates.ForeColor = System.Drawing.Color.Black
+        Me.checkbox_automatic_updates.Location = New System.Drawing.Point(16, 36)
+        Me.checkbox_automatic_updates.Name = "checkbox_automatic_updates"
+        Me.checkbox_automatic_updates.Size = New System.Drawing.Size(435, 34)
+        Me.checkbox_automatic_updates.TabIndex = 44
+        Me.checkbox_automatic_updates.Text = "Automatically update on startup if available"
+        Me.checkbox_automatic_updates.UseVisualStyleBackColor = True
+        '
+        'f_3_groupbox_configuration
+        '
+        Me.f_3_groupbox_configuration.Controls.Add(Me.button_save_config)
+        Me.f_3_groupbox_configuration.Controls.Add(Me.checkbox_load_config_on_startup)
+        Me.f_3_groupbox_configuration.Controls.Add(Me.button_load_config)
+        Me.f_3_groupbox_configuration.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.f_3_groupbox_configuration.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.f_3_groupbox_configuration.Location = New System.Drawing.Point(5, 143)
+        Me.f_3_groupbox_configuration.Name = "f_3_groupbox_configuration"
+        Me.f_3_groupbox_configuration.Size = New System.Drawing.Size(826, 128)
+        Me.f_3_groupbox_configuration.TabIndex = 59
+        Me.f_3_groupbox_configuration.TabStop = False
+        Me.f_3_groupbox_configuration.Text = "Configuration"
+        '
+        'button_save_config
+        '
+        Me.button_save_config.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.button_save_config.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.button_save_config.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.button_save_config.Location = New System.Drawing.Point(16, 33)
+        Me.button_save_config.Margin = New System.Windows.Forms.Padding(2)
+        Me.button_save_config.Name = "button_save_config"
+        Me.button_save_config.Size = New System.Drawing.Size(273, 39)
+        Me.button_save_config.TabIndex = 42
+        Me.button_save_config.Text = "Save Configuration"
+        Me.button_save_config.UseVisualStyleBackColor = True
+        '
+        'checkbox_load_config_on_startup
+        '
+        Me.checkbox_load_config_on_startup.AutoSize = True
+        Me.checkbox_load_config_on_startup.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.checkbox_load_config_on_startup.ForeColor = System.Drawing.Color.Black
+        Me.checkbox_load_config_on_startup.Location = New System.Drawing.Point(574, 38)
+        Me.checkbox_load_config_on_startup.Name = "checkbox_load_config_on_startup"
+        Me.checkbox_load_config_on_startup.Size = New System.Drawing.Size(242, 34)
+        Me.checkbox_load_config_on_startup.TabIndex = 44
+        Me.checkbox_load_config_on_startup.Text = "Load config on startup"
+        Me.checkbox_load_config_on_startup.UseVisualStyleBackColor = True
+        '
+        'button_load_config
+        '
+        Me.button_load_config.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.button_load_config.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.button_load_config.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.button_load_config.Location = New System.Drawing.Point(293, 33)
+        Me.button_load_config.Margin = New System.Windows.Forms.Padding(2)
+        Me.button_load_config.Name = "button_load_config"
+        Me.button_load_config.Size = New System.Drawing.Size(273, 39)
+        Me.button_load_config.TabIndex = 43
+        Me.button_load_config.Text = "Load Configuration"
+        Me.button_load_config.UseVisualStyleBackColor = True
         '
         'f_2
         '
@@ -764,8 +1035,8 @@ Partial Class main
         Me.f_1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.f_1.Controls.Add(Me.Panel3)
-        Me.f_1.Controls.Add(Me.Panel1)
+        Me.f_1.Controls.Add(Me.widget_6)
+        Me.f_1.Controls.Add(Me.widget_5)
         Me.f_1.Controls.Add(Me.f_1_label_sources)
         Me.f_1.Controls.Add(Me.f_1_richtextbox_changelog)
         Me.f_1.Controls.Add(Me.f_1_label_changelog)
@@ -781,6 +1052,94 @@ Partial Class main
         Me.f_1.Name = "f_1"
         Me.f_1.Size = New System.Drawing.Size(1594, 854)
         Me.f_1.TabIndex = 4
+        '
+        'widget_6
+        '
+        Me.widget_6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.widget_6.BackColor = System.Drawing.Color.Navy
+        Me.widget_6.Controls.Add(Me.widget_6_title)
+        Me.widget_6.Controls.Add(Me.widget_6_inner)
+        Me.widget_6.Location = New System.Drawing.Point(1385, 544)
+        Me.widget_6.Name = "widget_6"
+        Me.widget_6.Size = New System.Drawing.Size(200, 100)
+        Me.widget_6.TabIndex = 11
+        '
+        'widget_6_title
+        '
+        Me.widget_6_title.AutoSize = True
+        Me.widget_6_title.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.widget_6_title.ForeColor = System.Drawing.Color.White
+        Me.widget_6_title.Location = New System.Drawing.Point(3, 5)
+        Me.widget_6_title.Name = "widget_6_title"
+        Me.widget_6_title.Size = New System.Drawing.Size(124, 21)
+        Me.widget_6_title.TabIndex = 1
+        Me.widget_6_title.Text = "WIDGET_6_TITLE"
+        '
+        'widget_6_inner
+        '
+        Me.widget_6_inner.BackColor = System.Drawing.Color.White
+        Me.widget_6_inner.BackgroundImage = CType(resources.GetObject("widget_6_inner.BackgroundImage"), System.Drawing.Image)
+        Me.widget_6_inner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.widget_6_inner.Controls.Add(Me.widget_6_price)
+        Me.widget_6_inner.Location = New System.Drawing.Point(0, 30)
+        Me.widget_6_inner.Name = "widget_6_inner"
+        Me.widget_6_inner.Size = New System.Drawing.Size(200, 70)
+        Me.widget_6_inner.TabIndex = 0
+        '
+        'widget_6_price
+        '
+        Me.widget_6_price.AutoSize = True
+        Me.widget_6_price.Font = New System.Drawing.Font("Segoe UI Semilight", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.widget_6_price.ForeColor = System.Drawing.Color.Black
+        Me.widget_6_price.Location = New System.Drawing.Point(3, 13)
+        Me.widget_6_price.Name = "widget_6_price"
+        Me.widget_6_price.Size = New System.Drawing.Size(102, 32)
+        Me.widget_6_price.TabIndex = 2
+        Me.widget_6_price.Text = "PRICE  $"
+        '
+        'widget_5
+        '
+        Me.widget_5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.widget_5.BackColor = System.Drawing.Color.Navy
+        Me.widget_5.Controls.Add(Me.widget_5_title)
+        Me.widget_5.Controls.Add(Me.widget_5_inner)
+        Me.widget_5.Location = New System.Drawing.Point(1385, 438)
+        Me.widget_5.Name = "widget_5"
+        Me.widget_5.Size = New System.Drawing.Size(200, 100)
+        Me.widget_5.TabIndex = 6
+        '
+        'widget_5_title
+        '
+        Me.widget_5_title.AutoSize = True
+        Me.widget_5_title.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.widget_5_title.ForeColor = System.Drawing.Color.White
+        Me.widget_5_title.Location = New System.Drawing.Point(3, 5)
+        Me.widget_5_title.Name = "widget_5_title"
+        Me.widget_5_title.Size = New System.Drawing.Size(124, 21)
+        Me.widget_5_title.TabIndex = 1
+        Me.widget_5_title.Text = "WIDGET_5_TITLE"
+        '
+        'widget_5_inner
+        '
+        Me.widget_5_inner.BackColor = System.Drawing.Color.White
+        Me.widget_5_inner.BackgroundImage = CType(resources.GetObject("widget_5_inner.BackgroundImage"), System.Drawing.Image)
+        Me.widget_5_inner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.widget_5_inner.Controls.Add(Me.widget_5_price)
+        Me.widget_5_inner.Location = New System.Drawing.Point(0, 30)
+        Me.widget_5_inner.Name = "widget_5_inner"
+        Me.widget_5_inner.Size = New System.Drawing.Size(200, 70)
+        Me.widget_5_inner.TabIndex = 0
+        '
+        'widget_5_price
+        '
+        Me.widget_5_price.AutoSize = True
+        Me.widget_5_price.Font = New System.Drawing.Font("Segoe UI Semilight", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.widget_5_price.ForeColor = System.Drawing.Color.Black
+        Me.widget_5_price.Location = New System.Drawing.Point(3, 13)
+        Me.widget_5_price.Name = "widget_5_price"
+        Me.widget_5_price.Size = New System.Drawing.Size(102, 32)
+        Me.widget_5_price.TabIndex = 2
+        Me.widget_5_price.Text = "PRICE  $"
         '
         'f_1_label_sources
         '
@@ -1035,277 +1394,6 @@ Partial Class main
         Me.lbl_welcome.TabIndex = 0
         Me.lbl_welcome.Text = "Welcome to EzMiner 1.1.0 'Tungsten'"
         '
-        'f_3
-        '
-        Me.f_3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.f_3.Controls.Add(Me.f_3_groupbox_widget_settings)
-        Me.f_3.Controls.Add(Me.f_3_miner_backend)
-        Me.f_3.Controls.Add(Me.f_3_groupbox_gui)
-        Me.f_3.Controls.Add(Me.f_3_groupbox_update_info)
-        Me.f_3.Controls.Add(Me.f_3_groupbox_configuration)
-        Me.f_3.Location = New System.Drawing.Point(3, 3)
-        Me.f_3.Name = "f_3"
-        Me.f_3.Size = New System.Drawing.Size(1594, 854)
-        Me.f_3.TabIndex = 7
-        '
-        'f_3_groupbox_widget_settings
-        '
-        Me.f_3_groupbox_widget_settings.Controls.Add(Me.f_3_lbl_fetch_description)
-        Me.f_3_groupbox_widget_settings.Controls.Add(Me.richtextbox_coins_fetched)
-        Me.f_3_groupbox_widget_settings.Controls.Add(Me.f_3_lbl_widget_coins)
-        Me.f_3_groupbox_widget_settings.Controls.Add(Me.droplist_widget_fetching)
-        Me.f_3_groupbox_widget_settings.Controls.Add(Me.f_3_lbl_price_fetching)
-        Me.f_3_groupbox_widget_settings.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.f_3_groupbox_widget_settings.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.f_3_groupbox_widget_settings.Location = New System.Drawing.Point(5, 534)
-        Me.f_3_groupbox_widget_settings.Name = "f_3_groupbox_widget_settings"
-        Me.f_3_groupbox_widget_settings.Size = New System.Drawing.Size(826, 312)
-        Me.f_3_groupbox_widget_settings.TabIndex = 66
-        Me.f_3_groupbox_widget_settings.TabStop = False
-        Me.f_3_groupbox_widget_settings.Text = "Widget Settings:"
-        '
-        'f_3_lbl_fetch_description
-        '
-        Me.f_3_lbl_fetch_description.AutoSize = True
-        Me.f_3_lbl_fetch_description.ForeColor = System.Drawing.Color.Black
-        Me.f_3_lbl_fetch_description.Location = New System.Drawing.Point(379, 71)
-        Me.f_3_lbl_fetch_description.Name = "f_3_lbl_fetch_description"
-        Me.f_3_lbl_fetch_description.Size = New System.Drawing.Size(410, 120)
-        Me.f_3_lbl_fetch_description.TabIndex = 69
-        Me.f_3_lbl_fetch_description.Text = "Description: " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "What coins to display the prices of in the " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "widgets (max 6). Does" &
-    "n't matter what order" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "they are in, sorted alphabetically."
-        '
-        'richtextbox_coins_fetched
-        '
-        Me.richtextbox_coins_fetched.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.richtextbox_coins_fetched.Location = New System.Drawing.Point(161, 71)
-        Me.richtextbox_coins_fetched.Name = "richtextbox_coins_fetched"
-        Me.richtextbox_coins_fetched.Size = New System.Drawing.Size(195, 230)
-        Me.richtextbox_coins_fetched.TabIndex = 68
-        Me.richtextbox_coins_fetched.Text = "electroneum" & Global.Microsoft.VisualBasic.ChrW(10) & "bitcoin" & Global.Microsoft.VisualBasic.ChrW(10) & "monero" & Global.Microsoft.VisualBasic.ChrW(10) & "garlicoin" & Global.Microsoft.VisualBasic.ChrW(10) & "litecoin" & Global.Microsoft.VisualBasic.ChrW(10) & "ethereum"
-        '
-        'f_3_lbl_widget_coins
-        '
-        Me.f_3_lbl_widget_coins.AutoSize = True
-        Me.f_3_lbl_widget_coins.Location = New System.Drawing.Point(11, 68)
-        Me.f_3_lbl_widget_coins.Name = "f_3_lbl_widget_coins"
-        Me.f_3_lbl_widget_coins.Size = New System.Drawing.Size(144, 30)
-        Me.f_3_lbl_widget_coins.TabIndex = 67
-        Me.f_3_lbl_widget_coins.Text = "Coins fetched:"
-        '
-        'droplist_widget_fetching
-        '
-        Me.droplist_widget_fetching.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.droplist_widget_fetching.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.droplist_widget_fetching.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.droplist_widget_fetching.FormattingEnabled = True
-        Me.droplist_widget_fetching.Items.AddRange(New Object() {"Server-side", "Client-side"})
-        Me.droplist_widget_fetching.Location = New System.Drawing.Point(161, 28)
-        Me.droplist_widget_fetching.Margin = New System.Windows.Forms.Padding(2)
-        Me.droplist_widget_fetching.Name = "droplist_widget_fetching"
-        Me.droplist_widget_fetching.Size = New System.Drawing.Size(193, 38)
-        Me.droplist_widget_fetching.TabIndex = 65
-        '
-        'f_3_lbl_price_fetching
-        '
-        Me.f_3_lbl_price_fetching.AutoSize = True
-        Me.f_3_lbl_price_fetching.Location = New System.Drawing.Point(11, 31)
-        Me.f_3_lbl_price_fetching.Name = "f_3_lbl_price_fetching"
-        Me.f_3_lbl_price_fetching.Size = New System.Drawing.Size(144, 30)
-        Me.f_3_lbl_price_fetching.TabIndex = 0
-        Me.f_3_lbl_price_fetching.Text = "Price fetching:"
-        '
-        'f_3_miner_backend
-        '
-        Me.f_3_miner_backend.Controls.Add(Me.droplist_cpu_backend)
-        Me.f_3_miner_backend.Controls.Add(Me.f_3_lbl_cpu_backend)
-        Me.f_3_miner_backend.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.f_3_miner_backend.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.f_3_miner_backend.Location = New System.Drawing.Point(5, 9)
-        Me.f_3_miner_backend.Name = "f_3_miner_backend"
-        Me.f_3_miner_backend.Size = New System.Drawing.Size(826, 128)
-        Me.f_3_miner_backend.TabIndex = 60
-        Me.f_3_miner_backend.TabStop = False
-        Me.f_3_miner_backend.Text = "Miner Backend:"
-        '
-        'droplist_cpu_backend
-        '
-        Me.droplist_cpu_backend.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.droplist_cpu_backend.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.droplist_cpu_backend.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.droplist_cpu_backend.FormattingEnabled = True
-        Me.droplist_cpu_backend.Items.AddRange(New Object() {"xmr-stak", "cpuminer-multi"})
-        Me.droplist_cpu_backend.Location = New System.Drawing.Point(16, 63)
-        Me.droplist_cpu_backend.Margin = New System.Windows.Forms.Padding(2)
-        Me.droplist_cpu_backend.Name = "droplist_cpu_backend"
-        Me.droplist_cpu_backend.Size = New System.Drawing.Size(193, 38)
-        Me.droplist_cpu_backend.TabIndex = 65
-        '
-        'f_3_lbl_cpu_backend
-        '
-        Me.f_3_lbl_cpu_backend.AutoSize = True
-        Me.f_3_lbl_cpu_backend.Location = New System.Drawing.Point(11, 31)
-        Me.f_3_lbl_cpu_backend.Name = "f_3_lbl_cpu_backend"
-        Me.f_3_lbl_cpu_backend.Size = New System.Drawing.Size(96, 30)
-        Me.f_3_lbl_cpu_backend.TabIndex = 0
-        Me.f_3_lbl_cpu_backend.Text = "Backend:"
-        '
-        'f_3_groupbox_gui
-        '
-        Me.f_3_groupbox_gui.Controls.Add(Me.button_load_background)
-        Me.f_3_groupbox_gui.Controls.Add(Me.button_clear_background)
-        Me.f_3_groupbox_gui.Controls.Add(Me.f_3_label_background)
-        Me.f_3_groupbox_gui.Controls.Add(Me.f_3_lbl_colour)
-        Me.f_3_groupbox_gui.Controls.Add(Me.droplist_background_colour)
-        Me.f_3_groupbox_gui.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.f_3_groupbox_gui.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.f_3_groupbox_gui.Location = New System.Drawing.Point(5, 377)
-        Me.f_3_groupbox_gui.Name = "f_3_groupbox_gui"
-        Me.f_3_groupbox_gui.Size = New System.Drawing.Size(826, 151)
-        Me.f_3_groupbox_gui.TabIndex = 61
-        Me.f_3_groupbox_gui.TabStop = False
-        Me.f_3_groupbox_gui.Text = "GUI Preferences"
-        '
-        'button_load_background
-        '
-        Me.button_load_background.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.button_load_background.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.button_load_background.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.button_load_background.Location = New System.Drawing.Point(220, 81)
-        Me.button_load_background.Margin = New System.Windows.Forms.Padding(2)
-        Me.button_load_background.Name = "button_load_background"
-        Me.button_load_background.Size = New System.Drawing.Size(273, 39)
-        Me.button_load_background.TabIndex = 45
-        Me.button_load_background.Text = "Load Background"
-        Me.button_load_background.UseVisualStyleBackColor = True
-        Me.button_load_background.Visible = False
-        '
-        'button_clear_background
-        '
-        Me.button_clear_background.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.button_clear_background.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.button_clear_background.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.button_clear_background.Location = New System.Drawing.Point(497, 81)
-        Me.button_clear_background.Margin = New System.Windows.Forms.Padding(2)
-        Me.button_clear_background.Name = "button_clear_background"
-        Me.button_clear_background.Size = New System.Drawing.Size(273, 39)
-        Me.button_clear_background.TabIndex = 46
-        Me.button_clear_background.Text = "Clear Background"
-        Me.button_clear_background.UseVisualStyleBackColor = True
-        Me.button_clear_background.Visible = False
-        '
-        'f_3_label_background
-        '
-        Me.f_3_label_background.AutoSize = True
-        Me.f_3_label_background.Location = New System.Drawing.Point(11, 85)
-        Me.f_3_label_background.Name = "f_3_label_background"
-        Me.f_3_label_background.Size = New System.Drawing.Size(205, 30)
-        Me.f_3_label_background.TabIndex = 64
-        Me.f_3_label_background.Text = "Custom Background:"
-        Me.f_3_label_background.Visible = False
-        '
-        'f_3_lbl_colour
-        '
-        Me.f_3_lbl_colour.AutoSize = True
-        Me.f_3_lbl_colour.Location = New System.Drawing.Point(11, 40)
-        Me.f_3_lbl_colour.Name = "f_3_lbl_colour"
-        Me.f_3_lbl_colour.Size = New System.Drawing.Size(149, 30)
-        Me.f_3_lbl_colour.TabIndex = 63
-        Me.f_3_lbl_colour.Text = "Theme Colour:"
-        '
-        'droplist_background_colour
-        '
-        Me.droplist_background_colour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.droplist_background_colour.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.droplist_background_colour.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.droplist_background_colour.FormattingEnabled = True
-        Me.droplist_background_colour.Items.AddRange(New Object() {"Blue", "Green", "Yellow", "Red"})
-        Me.droplist_background_colour.Location = New System.Drawing.Point(163, 38)
-        Me.droplist_background_colour.Margin = New System.Windows.Forms.Padding(2)
-        Me.droplist_background_colour.Name = "droplist_background_colour"
-        Me.droplist_background_colour.Size = New System.Drawing.Size(104, 38)
-        Me.droplist_background_colour.TabIndex = 62
-        '
-        'f_3_groupbox_update_info
-        '
-        Me.f_3_groupbox_update_info.Controls.Add(Me.checkbox_automatic_updates)
-        Me.f_3_groupbox_update_info.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.f_3_groupbox_update_info.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.f_3_groupbox_update_info.Location = New System.Drawing.Point(5, 277)
-        Me.f_3_groupbox_update_info.Name = "f_3_groupbox_update_info"
-        Me.f_3_groupbox_update_info.Size = New System.Drawing.Size(826, 94)
-        Me.f_3_groupbox_update_info.TabIndex = 60
-        Me.f_3_groupbox_update_info.TabStop = False
-        Me.f_3_groupbox_update_info.Text = "Updates"
-        '
-        'checkbox_automatic_updates
-        '
-        Me.checkbox_automatic_updates.AutoSize = True
-        Me.checkbox_automatic_updates.Checked = True
-        Me.checkbox_automatic_updates.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.checkbox_automatic_updates.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.checkbox_automatic_updates.ForeColor = System.Drawing.Color.Black
-        Me.checkbox_automatic_updates.Location = New System.Drawing.Point(16, 36)
-        Me.checkbox_automatic_updates.Name = "checkbox_automatic_updates"
-        Me.checkbox_automatic_updates.Size = New System.Drawing.Size(435, 34)
-        Me.checkbox_automatic_updates.TabIndex = 44
-        Me.checkbox_automatic_updates.Text = "Automatically update on startup if available"
-        Me.checkbox_automatic_updates.UseVisualStyleBackColor = True
-        '
-        'f_3_groupbox_configuration
-        '
-        Me.f_3_groupbox_configuration.Controls.Add(Me.button_save_config)
-        Me.f_3_groupbox_configuration.Controls.Add(Me.checkbox_load_config_on_startup)
-        Me.f_3_groupbox_configuration.Controls.Add(Me.button_load_config)
-        Me.f_3_groupbox_configuration.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.f_3_groupbox_configuration.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.f_3_groupbox_configuration.Location = New System.Drawing.Point(5, 143)
-        Me.f_3_groupbox_configuration.Name = "f_3_groupbox_configuration"
-        Me.f_3_groupbox_configuration.Size = New System.Drawing.Size(826, 128)
-        Me.f_3_groupbox_configuration.TabIndex = 59
-        Me.f_3_groupbox_configuration.TabStop = False
-        Me.f_3_groupbox_configuration.Text = "Configuration"
-        '
-        'button_save_config
-        '
-        Me.button_save_config.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.button_save_config.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.button_save_config.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.button_save_config.Location = New System.Drawing.Point(16, 33)
-        Me.button_save_config.Margin = New System.Windows.Forms.Padding(2)
-        Me.button_save_config.Name = "button_save_config"
-        Me.button_save_config.Size = New System.Drawing.Size(273, 39)
-        Me.button_save_config.TabIndex = 42
-        Me.button_save_config.Text = "Save Configuration"
-        Me.button_save_config.UseVisualStyleBackColor = True
-        '
-        'checkbox_load_config_on_startup
-        '
-        Me.checkbox_load_config_on_startup.AutoSize = True
-        Me.checkbox_load_config_on_startup.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.checkbox_load_config_on_startup.ForeColor = System.Drawing.Color.Black
-        Me.checkbox_load_config_on_startup.Location = New System.Drawing.Point(574, 38)
-        Me.checkbox_load_config_on_startup.Name = "checkbox_load_config_on_startup"
-        Me.checkbox_load_config_on_startup.Size = New System.Drawing.Size(242, 34)
-        Me.checkbox_load_config_on_startup.TabIndex = 44
-        Me.checkbox_load_config_on_startup.Text = "Load config on startup"
-        Me.checkbox_load_config_on_startup.UseVisualStyleBackColor = True
-        '
-        'button_load_config
-        '
-        Me.button_load_config.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.button_load_config.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.button_load_config.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.button_load_config.Location = New System.Drawing.Point(293, 33)
-        Me.button_load_config.Margin = New System.Windows.Forms.Padding(2)
-        Me.button_load_config.Name = "button_load_config"
-        Me.button_load_config.Size = New System.Drawing.Size(273, 39)
-        Me.button_load_config.TabIndex = 43
-        Me.button_load_config.Text = "Load Configuration"
-        Me.button_load_config.UseVisualStyleBackColor = True
-        '
         'green
         '
         Me.green.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -1480,94 +1568,6 @@ Partial Class main
         '
         Me.dialog_config_open.FileName = "File name"
         '
-        'Panel1
-        '
-        Me.Panel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.BackColor = System.Drawing.Color.Navy
-        Me.Panel1.Controls.Add(Me.widget_5_title)
-        Me.Panel1.Controls.Add(Me.widget_5_inner)
-        Me.Panel1.Location = New System.Drawing.Point(1385, 438)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(200, 100)
-        Me.Panel1.TabIndex = 6
-        '
-        'widget_5_title
-        '
-        Me.widget_5_title.AutoSize = True
-        Me.widget_5_title.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.widget_5_title.ForeColor = System.Drawing.Color.White
-        Me.widget_5_title.Location = New System.Drawing.Point(3, 5)
-        Me.widget_5_title.Name = "widget_5_title"
-        Me.widget_5_title.Size = New System.Drawing.Size(125, 21)
-        Me.widget_5_title.TabIndex = 1
-        Me.widget_5_title.Text = "WIDGET_4_TITLE"
-        '
-        'widget_5_inner
-        '
-        Me.widget_5_inner.BackColor = System.Drawing.Color.White
-        Me.widget_5_inner.BackgroundImage = CType(resources.GetObject("widget_5_inner.BackgroundImage"), System.Drawing.Image)
-        Me.widget_5_inner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.widget_5_inner.Controls.Add(Me.widget_5_price)
-        Me.widget_5_inner.Location = New System.Drawing.Point(0, 30)
-        Me.widget_5_inner.Name = "widget_5_inner"
-        Me.widget_5_inner.Size = New System.Drawing.Size(200, 70)
-        Me.widget_5_inner.TabIndex = 0
-        '
-        'widget_5_price
-        '
-        Me.widget_5_price.AutoSize = True
-        Me.widget_5_price.Font = New System.Drawing.Font("Segoe UI Semilight", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.widget_5_price.ForeColor = System.Drawing.Color.Black
-        Me.widget_5_price.Location = New System.Drawing.Point(3, 13)
-        Me.widget_5_price.Name = "widget_5_price"
-        Me.widget_5_price.Size = New System.Drawing.Size(102, 32)
-        Me.widget_5_price.TabIndex = 2
-        Me.widget_5_price.Text = "PRICE  $"
-        '
-        'Panel3
-        '
-        Me.Panel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel3.BackColor = System.Drawing.Color.Navy
-        Me.Panel3.Controls.Add(Me.widget_6_title)
-        Me.Panel3.Controls.Add(Me.widget_6_inner)
-        Me.Panel3.Location = New System.Drawing.Point(1385, 544)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(200, 100)
-        Me.Panel3.TabIndex = 11
-        '
-        'widget_6_title
-        '
-        Me.widget_6_title.AutoSize = True
-        Me.widget_6_title.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.widget_6_title.ForeColor = System.Drawing.Color.White
-        Me.widget_6_title.Location = New System.Drawing.Point(3, 5)
-        Me.widget_6_title.Name = "widget_6_title"
-        Me.widget_6_title.Size = New System.Drawing.Size(125, 21)
-        Me.widget_6_title.TabIndex = 1
-        Me.widget_6_title.Text = "WIDGET_4_TITLE"
-        '
-        'widget_6_inner
-        '
-        Me.widget_6_inner.BackColor = System.Drawing.Color.White
-        Me.widget_6_inner.BackgroundImage = CType(resources.GetObject("widget_6_inner.BackgroundImage"), System.Drawing.Image)
-        Me.widget_6_inner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.widget_6_inner.Controls.Add(Me.widget_6_price)
-        Me.widget_6_inner.Location = New System.Drawing.Point(0, 30)
-        Me.widget_6_inner.Name = "widget_6_inner"
-        Me.widget_6_inner.Size = New System.Drawing.Size(200, 70)
-        Me.widget_6_inner.TabIndex = 0
-        '
-        'widget_6_price
-        '
-        Me.widget_6_price.AutoSize = True
-        Me.widget_6_price.Font = New System.Drawing.Font("Segoe UI Semilight", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.widget_6_price.ForeColor = System.Drawing.Color.Black
-        Me.widget_6_price.Location = New System.Drawing.Point(3, 13)
-        Me.widget_6_price.Name = "widget_6_price"
-        Me.widget_6_price.Size = New System.Drawing.Size(102, 32)
-        Me.widget_6_price.TabIndex = 2
-        Me.widget_6_price.Text = "PRICE  $"
-        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1589,6 +1589,17 @@ Partial Class main
         Me.Name = "main"
         Me.Text = "main"
         Me.mainpanel.ResumeLayout(False)
+        Me.f_3.ResumeLayout(False)
+        Me.f_3_groupbox_widget_settings.ResumeLayout(False)
+        Me.f_3_groupbox_widget_settings.PerformLayout()
+        Me.f_3_miner_backend.ResumeLayout(False)
+        Me.f_3_miner_backend.PerformLayout()
+        Me.f_3_groupbox_gui.ResumeLayout(False)
+        Me.f_3_groupbox_gui.PerformLayout()
+        Me.f_3_groupbox_update_info.ResumeLayout(False)
+        Me.f_3_groupbox_update_info.PerformLayout()
+        Me.f_3_groupbox_configuration.ResumeLayout(False)
+        Me.f_3_groupbox_configuration.PerformLayout()
         Me.f_2.ResumeLayout(False)
         Me.f_2.PerformLayout()
         CType(Me.coin_4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1601,6 +1612,14 @@ Partial Class main
         CType(Me.coin_1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.f_1.ResumeLayout(False)
         Me.f_1.PerformLayout()
+        Me.widget_6.ResumeLayout(False)
+        Me.widget_6.PerformLayout()
+        Me.widget_6_inner.ResumeLayout(False)
+        Me.widget_6_inner.PerformLayout()
+        Me.widget_5.ResumeLayout(False)
+        Me.widget_5.PerformLayout()
+        Me.widget_5_inner.ResumeLayout(False)
+        Me.widget_5_inner.PerformLayout()
         CType(Me.picture_snap_logo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picture_logo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.widget_4.ResumeLayout(False)
@@ -1619,17 +1638,6 @@ Partial Class main
         Me.widget_1.PerformLayout()
         Me.widget_1_inner.ResumeLayout(False)
         Me.widget_1_inner.PerformLayout()
-        Me.f_3.ResumeLayout(False)
-        Me.f_3_groupbox_widget_settings.ResumeLayout(False)
-        Me.f_3_groupbox_widget_settings.PerformLayout()
-        Me.f_3_miner_backend.ResumeLayout(False)
-        Me.f_3_miner_backend.PerformLayout()
-        Me.f_3_groupbox_gui.ResumeLayout(False)
-        Me.f_3_groupbox_gui.PerformLayout()
-        Me.f_3_groupbox_update_info.ResumeLayout(False)
-        Me.f_3_groupbox_update_info.PerformLayout()
-        Me.f_3_groupbox_configuration.ResumeLayout(False)
-        Me.f_3_groupbox_configuration.PerformLayout()
         CType(Me.green, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.yellow, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.red, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1645,14 +1653,6 @@ Partial Class main
         Me.tab_4.ResumeLayout(False)
         Me.tab_4.PerformLayout()
         CType(Me.tab_4_close, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
-        Me.widget_5_inner.ResumeLayout(False)
-        Me.widget_5_inner.PerformLayout()
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
-        Me.widget_6_inner.ResumeLayout(False)
-        Me.widget_6_inner.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1768,11 +1768,11 @@ Partial Class main
     Friend WithEvents panel_coin_3_checked As Panel
     Friend WithEvents panel_coin_2_checked As Panel
     Friend WithEvents panel_coin_1_checked As Panel
-    Friend WithEvents Panel3 As Panel
+    Friend WithEvents widget_6 As Panel
     Friend WithEvents widget_6_title As Label
     Friend WithEvents widget_6_inner As Panel
     Friend WithEvents widget_6_price As Label
-    Friend WithEvents Panel1 As Panel
+    Friend WithEvents widget_5 As Panel
     Friend WithEvents widget_5_title As Label
     Friend WithEvents widget_5_inner As Panel
     Friend WithEvents widget_5_price As Label

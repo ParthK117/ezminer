@@ -548,10 +548,10 @@ Public Class main
         ElseIf droplist_widget_fetching.SelectedIndex = 1 Then
             Call ez_ticker()
         End If
-        Dim dateselect As String = f_1_richtextbox_changelog.Lines(0)
-        f_1_richtextbox_changelog.Select(f_1_richtextbox_changelog.GetFirstCharIndexFromLine(0), dateselect.Length)
-        f_1_richtextbox_changelog.SelectionColor = Color.DodgerBlue
         Call grab_motd()
+        ' Dim dateselect As String = f_1_richtextbox_changelog.Lines(0)
+        '  f_1_richtextbox_changelog.Select(f_1_richtextbox_changelog.GetFirstCharIndexFromLine(0), dateselect.Length)
+        '  f_1_richtextbox_changelog.SelectionColor = Color.DodgerBlue
     End Sub
 
     Private Sub main_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseDown
@@ -945,15 +945,16 @@ Public Class main
             widget_2.BackColor = theme
             widget_3.BackColor = theme
             widget_4.BackColor = theme
+            widget_5.BackColor = theme
+            widget_6.BackColor = theme
         Else
             widget_1.BackColor = Color.Navy
             widget_2.BackColor = Color.Navy
             widget_3.BackColor = Color.Navy
             widget_4.BackColor = Color.Navy
+            widget_5.BackColor = Color.Navy
+            widget_6.BackColor = Color.Navy
         End If
-        Dim dateselect As String = f_1_richtextbox_changelog.Lines(0)
-        f_1_richtextbox_changelog.Select(f_1_richtextbox_changelog.GetFirstCharIndexFromLine(0), dateselect.Length)
-        f_1_richtextbox_changelog.SelectionColor = theme
     End Sub
 
     Private Sub yellow_Click(sender As Object, e As EventArgs) Handles yellow.Click
